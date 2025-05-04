@@ -16,20 +16,40 @@
     body {
       font-family: 'Press Start 2P', cursive;
     }
+    .pixel-bg {
+      background-image: url('https://i.ibb.co/VBFR6vb/pixel-characters-bg.png');
+      background-repeat: repeat-x;
+      background-size: contain;
+      position: absolute;
+      width: 200%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      opacity: 0.1;
+    }
   </style>
 </head>
-<body class="bg-black text-white">
+<body class="bg-black text-white overflow-hidden">
 
   <!-- Hero Section -->
   <section class="h-screen flex items-center justify-center text-center bg-gradient-to-b from-purple-900 to-black relative overflow-hidden">
-    <div id="hero" class="z-10">
+    <div class="pixel-bg" id="pixel-bg"></div>
+
+    <div id="hero" class="z-10 relative">
       <h1 class="text-4xl md:text-6xl text-neon font-bold mb-6">Добро пожаловать в GameWorld</h1>
       <p class="text-lg mb-8">Погрузись в мир пикселей и приключений!</p>
       <button id="start-btn" class="bg-lime-500 hover:bg-lime-400 text-black px-8 py-4 rounded-xl text-lg shadow-lg transition-all">
         Начать игру
       </button>
+      <br/><br/>
+      <a href="https://t.me/your_bot_link" target="_blank"
+         class="inline-block bg-blue-500 hover:bg-blue-400 text-white px-6 py-3 rounded-xl text-md shadow-md transition-all">
+        Получить в Telegram
+      </a>
+        Начать игру
+      </button>
     </div>
-    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10"></div>
   </section>
 
   <!-- JS Animations -->
@@ -38,11 +58,21 @@
     gsap.from("#hero p", { duration: 1.2, y: 50, opacity: 0, delay: 0.5 });
     gsap.from("#start-btn", { duration: 1, scale: 0, opacity: 0, delay: 1 });
 
-    document.getElementById("start-btn").addEventListener("mouseenter", () => {
-      gsap.to("#start-btn", { scale: 1.1, duration: 0.2 });
+    gsap.to("#start-btn", {
+      scale: 1.1,
+      repeat: -1,
+      yoyo: true,
+      ease: "power1.inOut",
+      duration: 1.5,
+      delay: 2
     });
-    document.getElementById("start-btn").addEventListener("mouseleave", () => {
-      gsap.to("#start-btn", { scale: 1.0, duration: 0.2 });
+
+    // Двигаем фон с персонажами влево бесконечно
+    gsap.to("#pixel-bg", {
+      x: "-50%",
+      duration: 30,
+      repeat: -1,
+      ease: "linear"
     });
   </script>
 </body>
