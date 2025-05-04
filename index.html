@@ -17,7 +17,7 @@
       font-family: 'Press Start 2P', cursive;
     }
     .pixel-bg {
-      background-image: url(background-animated.gif);
+      background-image: url('https://i.ibb.co/VBFR6vb/pixel-characters-bg.png');
       background-repeat: repeat-x;
       background-size: contain;
       position: absolute;
@@ -66,7 +66,9 @@
       duration: 1.5,
       delay: 2
     });
-    gsap.to(background-animated.gif)
+
+    // Двигаем фон с персонажами влево бесконечно
+    gsap.to("#pixel-bg", {
       x: "-50%",
       duration: 30,
       repeat: -1,
